@@ -1,0 +1,8 @@
+{
+  "modules":[
+    "app/renderer",
+    "app/mouse",
+    "app/logicengine"
+  ],
+  "screenElement":"screen"
+}
