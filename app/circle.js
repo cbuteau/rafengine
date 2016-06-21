@@ -2,6 +2,7 @@
 define(['lib/maths', 'lib/tracker'], function(Maths, Tracker) {
   function CircleEntity() {
     // Because it is a singleton.
+    //jshint -W
     this.maths = Maths();
     this.cxT = new Tracker();
     this.cxT.update(this.maths.randInt(0, 300));
@@ -9,21 +10,15 @@ define(['lib/maths', 'lib/tracker'], function(Maths, Tracker) {
     this.cyT.update(this.maths.randInt(0,300));
     this.rT = new Tracker();
     this.rT.update(10);
-    this.cx = this.maths.randInt(0, 300);
-    this.cy = this.maths.randInt(0, 300);
-    this.r = 10;
     this._type = 0;
-    this._isAdded = false;
-    //this.test = this.maths.getUniqueId();
     this.id = 'circle_' + this.maths.getUniqueId();
-    //this.id = this.maths.getUniqueId();
   };
 
   CircleEntity.prototype.initialize = function(screen) {
     var node = screen.context.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    node.setAttribute('cx', this.cx);
-    node.setAttribute('cy', this.cy);
-    node.setAttribute('r', this.r);
+    node.setAttribute('cx', this.cxT.value);
+    node.setAttribute('cy', this.cyT.value);
+    node.setAttribute('r', this.rT.value);
     node.setAttribute('id', this.id);
     node.setAttribute('stroke', 'black');
     node.setAttribute('fill', 'red');
@@ -58,9 +53,6 @@ define(['lib/maths', 'lib/tracker'], function(Maths, Tracker) {
     this.rT.applyChange(function(value) {
       that.elem.attr('r', value);
     });
-    // this.elem.attr('cx', this.cx);
-    // this.elem.attr('cy', this.cy);
-    // this.elem.attr('r', this.r);
   };
 
   CircleEntity.prototype.setType = function(type) {
@@ -70,25 +62,9 @@ define(['lib/maths', 'lib/tracker'], function(Maths, Tracker) {
   CircleEntity.prototype.randomDrift = function() {
     var diffx = this.maths.randInt(-10, 10);
     var diffy = this.maths.randInt(-10, 10);
-    // this.cx += diffx;
-    // this.cy += diffy;
 
     this.cxT.update(this.cxT.value + diffx, 0, 300);
     this.cyT.update(this.cyT.value + diffy, 0, 300);
-
-    // if (this.cx < 0) {
-    //   this.cx = 0;
-    // }
-    // if (this.cx > 300) {
-    //   this.cx = 300;
-    // }
-    //
-    // if (this.cy < 0) {
-    //   this.cy = 0;
-    // }
-    // if (this.cy > 300) {
-    //   this.cy = 300;
-    // }
   }
 
   CircleEntity.prototype.drop = function() {

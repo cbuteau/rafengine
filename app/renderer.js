@@ -18,6 +18,8 @@ define(['./context'], function(Context) {
     this.entities.push(entity);
   };
 
+  // This is because in the optimization of JS code...this is one thing that cannot be optimized
+  // so we segregate it to a small bit.
   function unoptimizedTrap(callback) {
     try {
       callback();
@@ -35,7 +37,7 @@ define(['./context'], function(Context) {
         if (entity.isInitialized) {
           entity.render(that.screen);
         } else {
-          entity.initialize(that.screen);
+          entity.initialize(that.screen, that.context);
           entity.isInitialized = true;
         }
       })

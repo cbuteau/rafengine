@@ -1,5 +1,5 @@
 'use strict';
-define(['./circle', 'lib/Maths'] , function(CircleEntity, Maths) {
+define(['./circle', 'app/rect', 'lib/Maths'] , function(CircleEntity, RectangleEntity, Maths) {
 
   function LogicEngine() {
     this.maths = new Maths();
@@ -29,6 +29,11 @@ define(['./circle', 'lib/Maths'] , function(CircleEntity, Maths) {
     if (rend) {
       for (var i = 0; i < 100; i++) {
         this._makeCircle(rend, i);
+      }
+      for (var j = 0; j < 10; j++) {
+        var rect = new RectangleEntity();
+        rend.addEntity(rect);
+        this.logicals.push(rect);
       }
     }
   };
