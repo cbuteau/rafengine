@@ -1,5 +1,5 @@
 'use strict';
-define(['lib/maths', 'lib/tracker'], function(Maths, Tracker) {
+define('app/rect',['lib/maths', 'lib/tracker'], function(Maths, Tracker) {
   function RectangleEntity() {
     // Singleton with no new.
     this.maths = Maths();

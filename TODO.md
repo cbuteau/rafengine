@@ -13,8 +13,6 @@ a statemachine class to derive from...
 
 + Send coordinates into initialize and render so we don't have bounds hardcoded.
 
-+ Start Timestampings each module so we know how much each one takes.
-
 + More complex movement.
 
 + Something else with the mouse.
@@ -42,3 +40,9 @@ http://requirejs.org/docs/api.html#defsimple
 + Create Repository
 
 + Create configuration file...load it and load the modules based on the configuration file.
+
++ Start Timestampings each module so we know how much each one takes.
+
++ We have made screen bigger...the circles should spread out.
+
++ Cleanup code so defines say what they are.

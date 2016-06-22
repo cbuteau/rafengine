@@ -1,5 +1,5 @@
 'use strict';
-define(['./circle', 'app/rect', 'lib/Maths'] , function(CircleEntity, RectangleEntity, Maths) {
+define('app/logicengine',['./circle', 'app/rect', 'lib/Maths'] , function(CircleEntity, RectangleEntity, Maths) {
 
   function LogicEngine() {
     this.maths = new Maths();

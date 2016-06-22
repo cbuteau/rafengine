@@ -4,5 +4,6 @@
     "app/mouse",
     "app/logicengine"
   ],
-  "screenElement":"screen"
+  "screenElement":"screen",
+  "logLevel": 2
 }

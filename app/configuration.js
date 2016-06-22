@@ -1,5 +1,5 @@
 'use strict';
-define([ './loglevels', './logicengine', './renderer', './mouse', 'text!app/config.json' ], function(LogLevels, LogicEngine, Renderer, MouseEvents, txtCfg) {
+define('app/configuration', [ './loglevels', './logicengine', './renderer', './mouse', 'text!app/config.json' ], function(LogLevels, LogicEngine, Renderer, MouseEvents, txtCfg) {
 
   var LOGLEVELS = new LogLevels();
 
@@ -13,7 +13,7 @@ define([ './loglevels', './logicengine', './renderer', './mouse', 'text!app/conf
     _currentLogLevel: LOGLEVELS.INFO,
 
     info: function(msg) {
-      if (this._currentLogLevel >= LOGLEVELS.INFO) {
+      if (this._currentLogLevel <= LOGLEVELS.INFO) {
         console.log(msg);
       }
     },
@@ -35,9 +35,7 @@ define([ './loglevels', './logicengine', './renderer', './mouse', 'text!app/conf
           window.engine.addModule(new mod());
         }
 
-        // window.engine.addModule(new Renderer());
-        // window.engine.addModule(new MouseEvents());
-        // window.engine.addModule(new LogicEngine());
+        this._currentLogLevel = this.cfgOptions.logLevel;
     }
   };
 

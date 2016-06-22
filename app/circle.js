@@ -1,24 +1,30 @@
 'use strict';
-define(['lib/maths', 'lib/tracker'], function(Maths, Tracker) {
+define('app/circle',['lib/maths', 'lib/tracker'], function(Maths, Tracker) {
   function CircleEntity() {
     // Because it is a singleton.
     //jshint -W
     this.maths = Maths();
-    this.cxT = new Tracker();
-    this.cxT.update(this.maths.randInt(0, 300));
-    this.cyT = new Tracker();
-    this.cyT.update(this.maths.randInt(0,300));
-    this.rT = new Tracker();
-    this.rT.update(10);
+    this.cx = new Tracker();
+    this.cx.update(this.maths.randInt(0, 300));
+    this.cy = new Tracker();
+    this.cy.update(this.maths.randInt(0,300));
+    this.r = new Tracker();
+    this.r.update(10);
     this._type = 0;
     this.id = 'circle_' + this.maths.getUniqueId();
   };
 
-  CircleEntity.prototype.initialize = function(screen) {
+  CircleEntity.prototype.initialize = function(screen, context) {
+    this.context = context;
+
+    this.cx.update(this.maths.randInt(0, this.context.width));
+    this.cy.update(this.maths.randInt(0, this.context.height));
+
+
     var node = screen.context.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    node.setAttribute('cx', this.cxT.value);
-    node.setAttribute('cy', this.cyT.value);
-    node.setAttribute('r', this.rT.value);
+    node.setAttribute('cx', this.cx.value);
+    node.setAttribute('cy', this.cy.value);
+    node.setAttribute('r', this.r.value);
     node.setAttribute('id', this.id);
     node.setAttribute('stroke', 'black');
     node.setAttribute('fill', 'red');
@@ -38,19 +44,19 @@ define(['lib/maths', 'lib/tracker'], function(Maths, Tracker) {
   };
 
   CircleEntity.prototype.setXY = function(x, y) {
-    this.cxT.update(x);
-    this.cyT.update(y);
+    this.cx.update(x);
+    this.cy.update(y);
   };
 
   CircleEntity.prototype.render = function(screen) {
     var that = this;
-    this.cxT.applyChange(function(value) {
+    this.cx.applyChange(function(value) {
       that.elem.attr('cx', value);
     });
-    this.cyT.applyChange(function(value) {
+    this.cy.applyChange(function(value) {
       that.elem.attr('cy', value);
     });
-    this.rT.applyChange(function(value) {
+    this.r.applyChange(function(value) {
       that.elem.attr('r', value);
     });
   };
@@ -63,8 +69,8 @@ define(['lib/maths', 'lib/tracker'], function(Maths, Tracker) {
     var diffx = this.maths.randInt(-10, 10);
     var diffy = this.maths.randInt(-10, 10);
 
-    this.cxT.update(this.cxT.value + diffx, 0, 300);
-    this.cyT.update(this.cyT.value + diffy, 0, 300);
+    this.cx.update(this.cx.value + diffx, 0, this.context.width);
+    this.cy.update(this.cy.value + diffy, 0, this.context.height);
   }
 
   CircleEntity.prototype.drop = function() {

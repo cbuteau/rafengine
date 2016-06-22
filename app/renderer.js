@@ -1,5 +1,5 @@
 'use strict';
-define(['./context'], function(Context) {
+define('app/renderer',['./context'], function(Context) {
 
   function Renderer() {
     this.id = 'Renderer';
