@@ -2,9 +2,17 @@
 var express = require('express');
 
 var app = express();
-var fs = require("fs");
+var fs = require('fs');
+var path = require('path');
 
-app.use('/', express.static('public'));
+
+var fullpath = path.join(__dirname, 'site', 'index.html');
+console.log(fullpath);
+
+app.use(express.static(__dirname + '/site'));
+//app.use('/site', express.static(path.join(__dirname, 'site', 'index.html')));
+//app.use('/site', express.static('public'));
+
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -20,7 +28,7 @@ app.get('/listUsers', function (req, res) {
 })
 
 app.get('/config', function(req, res) {
-  fs.readFile( __dirname + "/app/config.json", 'utf8', function(err, data) {
+  fs.readFile( __dirname + "/site/app/config.json", 'utf8', function(err, data) {
     if (err) {
       console.error(err);
     }
