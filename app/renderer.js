@@ -35,7 +35,7 @@ define('app/renderer',['./context'], function(Context) {
       var that = this;
       unoptimizedTrap(function() {
         if (entity.isInitialized) {
-          entity.render(that.screen);
+          entity.render(that.screen, that.context);
         } else {
           entity.initialize(that.screen, that.context);
           entity.isInitialized = true;

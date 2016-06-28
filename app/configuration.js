@@ -4,7 +4,6 @@ define('app/configuration', [ './loglevels', './logicengine', './renderer', './m
   var LOGLEVELS = new LogLevels();
 
   function Configuration() {
-    this.init();
   }
 
   Configuration.prototype = {
@@ -26,13 +25,16 @@ define('app/configuration', [ './loglevels', './logicengine', './renderer', './m
       console.error(msg);
     },
 
-    init: function() {
-        this.cfgOptions = JSON.parse(txtCfg);
+    setData: function(data) {
+      this.cfgOptions = data;
+    },
+
+    init: function(engine) {
 
         for (var i = 0; i < this.cfgOptions.modules.length; i++) {
           var modName = this.cfgOptions.modules[i];
           var mod = require(modName);
-          window.engine.addModule(new mod());
+          engine.addModule(new mod());
         }
 
         this._currentLogLevel = this.cfgOptions.logLevel;

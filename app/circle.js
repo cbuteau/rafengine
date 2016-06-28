@@ -11,6 +11,8 @@ define('app/circle',['lib/maths', 'lib/tracker'], function(Maths, Tracker) {
     this.r = new Tracker();
     this.r.update(10);
     this._type = 0;
+    this.setFill('red');
+    this.setStroke('black');
     this.id = 'circle_' + this.maths.getUniqueId();
   };
 
@@ -26,8 +28,8 @@ define('app/circle',['lib/maths', 'lib/tracker'], function(Maths, Tracker) {
     node.setAttribute('cy', this.cy.value);
     node.setAttribute('r', this.r.value);
     node.setAttribute('id', this.id);
-    node.setAttribute('stroke', 'black');
-    node.setAttribute('fill', 'red');
+    node.setAttribute('stroke', this._stroke);
+    node.setAttribute('fill', this._fill);
     screen.get(0).appendChild(node);
 
     this.elem = $('#' + this.id);
@@ -63,6 +65,14 @@ define('app/circle',['lib/maths', 'lib/tracker'], function(Maths, Tracker) {
 
   CircleEntity.prototype.setType = function(type) {
     this._type = type;
+  };
+
+  CircleEntity.prototype.setFill = function(fill) {
+    this._fill = fill;
+  };
+
+  CircleEntity.prototype.setStroke = function(stroke) {
+    this._stroke = stroke;
   };
 
   CircleEntity.prototype.randomDrift = function() {

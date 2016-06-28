@@ -11,9 +11,15 @@ a statemachine class to derive from...
 
 # TODO
 
-+ Send coordinates into initialize and render so we don't have bounds hardcoded.
++ Started MultiEntity with 2 circles but they are not together and do not move.
+
++ 
+
++ Text Elements.
 
 + More complex movement.
+
++ Send coordinates into initialize and render so we don't have bounds hardcoded.
 
 + Something else with the mouse.
 
@@ -24,8 +30,6 @@ http://stackoverflow.com/questions/12015917/dropdown-menu-over-svg
 
 
 + Create WebGL structure to test.
-
-+ Text Elements.
 
 + Started reading DOOM source...it has an update to make the skull animate in the menu.  It manages multiple engine modes and has updates for each of them.
 
@@ -46,3 +50,5 @@ http://requirejs.org/docs/api.html#defsimple
 + We have made screen bigger...the circles should spread out.
 
 + Cleanup code so defines say what they are.
+
++ Move Configuration to REST service.

@@ -1,5 +1,5 @@
 'use strict';
-define('app/logicengine',['./circle', 'app/rect', 'lib/Maths'] , function(CircleEntity, RectangleEntity, Maths) {
+define('app/logicengine',['./circle', 'app/rect', 'app/multientity', 'lib/Maths'] , function(CircleEntity, RectangleEntity, MultiEntity, Maths) {
 
   function LogicEngine() {
     this.maths = new Maths();
@@ -27,14 +27,29 @@ define('app/logicengine',['./circle', 'app/rect', 'lib/Maths'] , function(Circle
     });
     var rend = window.engine.findModule('Renderer');
     if (rend) {
-      for (var i = 0; i < 100; i++) {
+      for (var i = 0; i < 1000; i++) {
         this._makeCircle(rend, i);
       }
-      for (var j = 0; j < 10; j++) {
+      for (var j = 0; j < 100; j++) {
         var rect = new RectangleEntity();
         rend.addEntity(rect);
         this.logicals.push(rect);
       }
+      for (var k = 0; k < 1; k++) {
+        var multi = new MultiEntity();
+        var circle1 = new CircleEntity();
+        circle1.setType(2);
+        circle1.setFill('lightblue');
+        var circle2 = new CircleEntity();
+        circle2.setType(2);
+        circle2.setFill('pink');
+        multi.addEntity(circle1);
+        multi.addEntity(circle2);
+
+        rend.addEntity(multi);
+      }
+
+
     }
   };
 

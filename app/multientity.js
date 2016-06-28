@@ -1,4 +1,4 @@
-define([], function() {
+define('app/multientity',[], function() {
   function MultiEntity() {
     this.entities = [];
   };
@@ -10,8 +10,19 @@ define([], function() {
     think: function() {
       // movement realtive to a center point.
     },
+    initialize: function(screen, context) {
+      for (var i = 0; i < this.entities.length; i++) {
+        var entity = this.entities[i];
+        entity.initialize(screen, context);
+      }
+    },
     render: function(screen) {
-
+      for (var i = 0; i < this.entities.length; i++) {
+        var entity = this.entities[i];
+        entity.render(screen);
+      }
     }
   };
+
+  return MultiEntity;
 });
